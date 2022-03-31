@@ -1,0 +1,24 @@
+@import '../../styles/mixins';
+
+.new-title-form {
+  input,
+  textarea {
+    @include inputStyle();
+  }
+}
+.create-btn-form-topic {
+  @include buttonStyleElectric();
+  font-size: 15px;
+  padding: 10px 20px;
+}
+.cancel-btn-form-topic {
+  @include buttonStyleGrey();
+  font-size: 15px;
+  padding: 10px 20px;
+}
+.modal-header {
+  border-bottom: none;
+}
+.modal-footer {
+  border-top: none;
+}

@@ -1,0 +1,66 @@
+@import '../../styles/mixins';
+
+.topic-card-container {
+  @include topicCard();
+  margin-bottom: 20px;
+  .topic-heart {
+    font-size: 20px;
+  }
+
+  .user-img {
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+  }
+  a {
+    font-size: 17px;
+  }
+  p {
+    font-weight: 400;
+    color: #989c9e;
+    font-size: 14px;
+    margin-top: 14px;
+  }
+  .comments {
+    margin-bottom: 12px;
+    .comment-bg {
+      background-color: #bdc3c7;
+      border-radius: 2px;
+      display: inline-block;
+      padding: 12px 17px;
+      color: #ffffff;
+      font-size: 14px;
+      font-family: 'Open Sans Bold', sans-serif;
+      position: relative;
+    }
+    .mark {
+      width: 11px;
+      height: 11px;
+      background-color: #bdc3c7;
+      position: absolute;
+      bottom: 0;
+      left: 43%;
+      margin-bottom: -5px;
+      transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+    }
+  }
+  .views {
+    color: #9da6aa;
+    font-size: 12px;
+    font-family: 'Open Sans Regular', sans-serif;
+    text-align: center;
+    line-height: 29px;
+    margin-bottom: 12px;
+  }
+  .time {
+    color: #9da6aa;
+    font-size: 12px;
+    font-family: 'Open Sans Regular', sans-serif;
+    text-align: center;
+    line-height: 29px;
+  }
+}

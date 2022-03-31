@@ -1,0 +1,31 @@
+@import '../../styles/mixins';
+.bg {
+  @include bgLoginRegister();
+}
+.login-container {
+  @include loginRegisterCard();
+  .upper-text {
+    text-align: center;
+    h2 {
+      font-weight: 700;
+      font-size: 30px;
+    }
+    p {
+      margin-top: 18px;
+      a {
+        font-weight: 600;
+      }
+    }
+  }
+
+  button {
+    @include buttonStyleElectric();
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-top: 30px;
+  }
+  input {
+    @include inputStyle();
+    margin-top: 20px;
+  }
+}

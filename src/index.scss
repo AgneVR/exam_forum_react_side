@@ -1,0 +1,36 @@
+@import './styles/fonts';
+@import './styles/colors';
+
+body {
+  font-family: $fontFamily;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  a {
+    text-decoration: none;
+    color: black;
+    &:hover {
+      color: $electric;
+    }
+  }
+  .height100 {
+    height: 100vh;
+  }
+  .mt-50 {
+    margin-top: 50px;
+  }
+  .mr-20 {
+    margin-right: 20px;
+  }
+  .mr-4 {
+    margin-right: 4px;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+  .favouriteFopic {
+    color: #4ebae7;
+  }
+}

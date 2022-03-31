@@ -1,0 +1,79 @@
+@import '../styles/fonts';
+
+@mixin buttonStyleElectric {
+  border: none;
+  box-shadow: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: $fontFamily;
+  border-radius: 5px;
+  padding: 9px 10px;
+  background-color: #1abc9c;
+  &:hover {
+    background-color: #148c74;
+  }
+}
+@mixin buttonStyleElectric {
+  border: none;
+  box-shadow: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: $fontFamily;
+  border-radius: 5px;
+  padding: 9px 10px;
+  background-color: #1abc9c;
+  &:hover {
+    background-color: #148c74;
+  }
+}
+@mixin buttonStyleGrey {
+  border: none;
+  box-shadow: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: $fontFamily;
+  border-radius: 5px;
+  padding: 9px 10px;
+  background-color: #b8b8b8;
+  &:hover {
+    background-color: #747474;
+  }
+}
+@mixin inputStyle {
+  border: 1px solid #eee;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: #202020;
+  padding: 11px 20px;
+  width: 100%;
+  &:focus {
+    border: 1px solid #1abc9c;
+  }
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+@mixin loginRegisterCard {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background: #fff;
+  -webkit-box-shadow: 5px 7px 40px rgb(69 69 69 / 10%);
+  box-shadow: 5px 7px 40px rgb(69 69 69 / 10%);
+  border-radius: 10px;
+}
+@mixin bgLoginRegister {
+  background-image: url(https://demo.egenslab.com/html/docbase/assets/images/breadcrumb-img.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+@mixin topicCard {
+  background: #fff;
+  -webkit-box-shadow: 5px 7px 40px rgb(69 69 69 / 10%);
+  box-shadow: 5px 7px 40px rgb(69 69 69 / 10%);
+  border-radius: 10px;
+  padding: 20px;
+}
