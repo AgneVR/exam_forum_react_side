@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import UserProfilePhoto from '../userProfilePhoto/UserProfilePhoto';
 import './UserProfileHeader.scss';
 
 const UserProfileHeader = () => {
@@ -7,7 +8,7 @@ const UserProfileHeader = () => {
   return (
     <div className='user-header'>
       <div className='bg-user'>
-        <img className='profile-img' src={currentUser && currentUser.imageUrl} alt='' />
+        <UserProfilePhoto />
         <h3>{currentUser && currentUser.username}</h3>
       </div>
       <div className='d-flex menu'>

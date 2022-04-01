@@ -1,5 +1,7 @@
 import CommentCard from '../../components/commentCard/CommentCard';
 import InnerTopicCard from '../../components/innerTopicCard/InnerTopicCard';
+import PostMessageInTopicCard from '../../components/postMessageInTopicCard/PostMessageInTopicCard';
+import PaginationGlobal from '../../components/pagination/PaginationGlobal';
 import './InnerTopicPage.scss';
 
 const InnerTopicPage = () => {
@@ -13,6 +15,10 @@ const InnerTopicPage = () => {
           <CommentCard />
           <CommentCard />
           <CommentCard />
+          <div className='mb-2'>
+            <PostMessageInTopicCard />
+          </div>
+          <PaginationGlobal />
         </div>
         <div className='col-lg-4'>another boxes</div>
       </div>

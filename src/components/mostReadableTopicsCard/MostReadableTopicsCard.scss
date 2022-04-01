@@ -1,0 +1,26 @@
+@import '../../styles/mixins';
+.most-readable {
+  @include topicCard();
+  padding-bottom: 1px;
+  h6 {
+    margin: 0;
+    margin-left: 6px;
+  }
+  .views {
+    color: #9da6aa;
+    font-size: 12px;
+    font-family: 'Open Sans Regular', sans-serif;
+    text-align: center;
+    line-height: 29px;
+    margin-bottom: 12px;
+  }
+  p {
+    margin: 0;
+  }
+  .box {
+    border-bottom: 1px solid #1abc9b33;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
