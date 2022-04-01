@@ -5,9 +5,13 @@ import PaginationGlobal from '../../components/pagination/PaginationGlobal';
 import RecentTopicsCard from '../../components/recentTopicsCard/RecentTopicsCard';
 import MostPopularTopicsCard from '../../components/mostPopularTopicsCard/MostPopularTopicsCard';
 import MostReadableTopicsCard from '../../components/mostReadableTopicsCard/MostReadableTopicsCard';
+import { useSelector } from 'react-redux';
+
 import './InnerTopicPage.scss';
 
 const InnerTopicPage = () => {
+  let currentUser = useSelector((state) => state.user.user);
+
   return (
     <div className='container mt-50'>
       <div className='row'>
@@ -18,9 +22,12 @@ const InnerTopicPage = () => {
           <CommentCard />
           <CommentCard />
           <CommentCard />
-          <div className='mb-2'>
-            <PostMessageInTopicCard />
-          </div>
+          {currentUser !== null && (
+            <div className='mb-2'>
+              <PostMessageInTopicCard />
+            </div>
+          )}
+
           <PaginationGlobal />
         </div>
         <div className='col-lg-4'>

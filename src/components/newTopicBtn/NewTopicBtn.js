@@ -1,9 +1,40 @@
 import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import http from '../../plugins/http';
 import './NewTopicBtn.scss';
 
 const NewTopicBtn = () => {
   const [newTopicModalOpen, setNewTopicModalOpen] = useState(false);
+  const [getErrorMsg, setErrorMsg] = useState('');
+  const inputTitleValue = useRef();
+  const inputShortDescriptionValue = useRef();
+  const inputDescriptionValue = useRef();
+  let currentUser = useSelector((state) => state.user.user);
+
+  const onClickHandler = () => {
+    let titleValue = inputTitleValue.current.value;
+    let shortDescriptionValue = inputShortDescriptionValue.current.value;
+    let descriptionValue = inputDescriptionValue.current.value;
+
+    const topic = {
+      title: titleValue,
+      shortDescription: shortDescriptionValue,
+      description: descriptionValue,
+      createdAt: new Date(),
+      currentUser: currentUser,
+    };
+
+    http.post(topic, 'create-topic').then((res) => {
+      if (res.success) {
+        console.log(res);
+      } else {
+        console.log(res);
+        setErrorMsg(res.message);
+      }
+    });
+  };
+
   function newTopicModal() {
     return (
       <Modal centered={true} isOpen={newTopicModalOpen} toggle={() => setNewTopicModalOpen(false)}>
@@ -12,13 +43,20 @@ const NewTopicBtn = () => {
         </ModalHeader>
         <ModalBody>
           <div className='new-title-form'>
-            <input type='text' placeholder='Enter title' className='mb-3' />
-            <input type='text' placeholder='Enter short description' className='mb-3' />
-            <textarea type='text' placeholder='Enter description' />
+            <input ref={inputTitleValue} type='text' placeholder='Enter title' className='mb-3' />
+            <input
+              ref={inputShortDescriptionValue}
+              type='text'
+              placeholder='Enter short description'
+              className='mb-3'
+            />
+            <textarea ref={inputDescriptionValue} type='text' placeholder='Enter description' />
           </div>
         </ModalBody>
         <ModalFooter>
-          <button className='create-btn-form-topic'>Create</button>
+          <button onClick={onClickHandler} className='create-btn-form-topic'>
+            Create
+          </button>
           <button className='cancel-btn-form-topic' onClick={() => setNewTopicModalOpen(false)}>
             Cancel
           </button>

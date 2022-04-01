@@ -1,13 +1,11 @@
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser, logoutUser } from '../../features/user';
 import http from '../../plugins/http';
 import NewTopicBtn from '../newTopicBtn/NewTopicBtn';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faDoorOpen, faBell, faHeart } from '@fortawesome/free-solid-svg-icons';
-import logo from '../../images/Untitled-1.png';
 import './MainLayout.scss';
 
 const MainLayout = () => {
@@ -15,13 +13,18 @@ const MainLayout = () => {
   const dispatch = useDispatch();
   let currentUser = useSelector((state) => state.user.user);
   const location = useLocation();
+  const [showNotifications, setShowNotifications] = useState(false);
 
   useEffect(() => {
     http.get(`get-user`).then((res) => {
       if (res.userInfo !== undefined) {
         dispatch(setUser(res.userInfo));
       } else {
-        if (location.pathname !== '/login') {
+        if (
+          location.pathname !== '/login' &&
+          location.pathname !== '/register' &&
+          location.pathname !== '/'
+        ) {
           toLoginPage('/login');
         }
       }
@@ -40,6 +43,37 @@ const MainLayout = () => {
       return <div className='bg-upper-box'></div>;
     }
   }
+
+  function notificationList() {
+    return (
+      <div className={`dropdown-notification ${showNotifications ? 'show' : ''}`}>
+        <Link to='/'>
+          <p>
+            There is new comment in topic:
+            <b> 10 Kids Unaware of Their Halloween Costume</b>
+          </p>
+        </Link>
+        <Link to='/'>
+          <p>
+            There is new comment in topic:
+            <b> 10 Kids Unaware of Their Halloween Costume</b>
+          </p>
+        </Link>
+        <Link to='/'>
+          <p>
+            There is new comment in topic:
+            <b> 10 Kids Unaware of Their Halloween Costume</b>
+          </p>
+        </Link>
+      </div>
+    );
+  }
+
+  const handleOnBlurNotifications = (e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setShowNotifications(false);
+    }
+  };
 
   function setLayput() {
     if (currentUser !== null) {
@@ -68,8 +102,15 @@ const MainLayout = () => {
                 <Link to='/favourite-topics' className='heart-icon mr-20'>
                   <FontAwesomeIcon icon={faHeart} />
                 </Link>
-                <div className='notification mr-20'>
-                  <FontAwesomeIcon icon={faBell} />
+                <div
+                  tabIndex='0'
+                  onBlur={(event) => handleOnBlurNotifications(event)}
+                  className='notification mr-20'
+                >
+                  <span onClick={() => setShowNotifications(!showNotifications)}>
+                    <FontAwesomeIcon icon={faBell} />
+                  </span>
+                  {notificationList()}
                 </div>
 
                 <button className='nav-btn close' onClick={resetUser}>
