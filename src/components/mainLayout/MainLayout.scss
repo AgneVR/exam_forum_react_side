@@ -47,6 +47,17 @@
     color: #b2b2b2;
     cursor: pointer;
     position: relative;
+    .notification-marker {
+      position: absolute;
+      top: 4px;
+      right: -1px;
+      z-index: 99;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #a30505;
+    }
+
     .dropdown-notification {
       @include topicCard();
       position: absolute;
@@ -64,17 +75,10 @@
         display: block;
       }
 
-      a {
-        color: white;
-        text-decoration: none;
-        margin-bottom: 10px;
-
-        p {
-          border-bottom: 1px solid white;
-          padding-bottom: 10px;
-        }
-
-        &:last-child p {
+      p {
+        border-bottom: 1px solid white;
+        padding-bottom: 10px;
+        &:last-child {
           border: none;
           padding-bottom: 0;
         }

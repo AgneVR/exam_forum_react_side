@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import http from '../../plugins/http';
+import blankUserImg from '../../images/blank-person-icon-15.jpg';
 import './RegisterPage.scss';
 
 const RegisterPage = () => {
@@ -24,7 +25,7 @@ const RegisterPage = () => {
     const user = {
       username: usernameValue,
       email: emailValue,
-      imageUrl: imageUrlValue,
+      imageUrl: imageUrlValue !== '' ? imageUrlValue : blankUserImg,
       passwordOne: passwordOneValue,
       passwordTwo: passwordTwoValue,
     };

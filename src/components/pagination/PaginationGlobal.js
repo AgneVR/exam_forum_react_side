@@ -1,15 +1,13 @@
 import Pagination from 'react-js-pagination';
 import './PaginationGlobal.scss';
 
-const PaginationGlobal = () => {
-  const handlePageChange = () => {};
-
+const PaginationGlobal = ({ activePage, totalItemsCount, handlePageChange }) => {
   return (
     <div className='d-flex justify-content-center'>
       <Pagination
-        activePage={2}
+        activePage={activePage}
         itemsCountPerPage={10}
-        totalItemsCount={10}
+        totalItemsCount={totalItemsCount}
         pageRangeDisplayed={5}
         onChange={handlePageChange}
         itemClass='page-item'

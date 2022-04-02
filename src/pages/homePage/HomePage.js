@@ -24,9 +24,11 @@ const HomePage = () => {
     <div className='container mt-50'>
       <div className='row'>
         <div className='col-lg-8'>
-          {/* <TopicCard divClassName='favouriteFopic' /> */}
-          {topics.length > 0 &&
-            topics.map((el, i) => <TopicCard divClassName='favouriteFopic' key={i} el={el} />)}
+          {topics && topics.length > 0 ? (
+            topics.map((el, i) => <TopicCard key={i} el={el} />)
+          ) : (
+            <p>There are no topics</p>
+          )}
         </div>
         <div className='col-lg-4'>
           <div className='mb-3'>

@@ -1,5 +1,6 @@
 import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
 import { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import http from '../../plugins/http';
 import './NewTopicBtn.scss';
@@ -11,6 +12,7 @@ const NewTopicBtn = () => {
   const inputShortDescriptionValue = useRef();
   const inputDescriptionValue = useRef();
   let currentUser = useSelector((state) => state.user.user);
+  const toInnerTopicPage = useNavigate();
 
   const onClickHandler = () => {
     let titleValue = inputTitleValue.current.value;
@@ -27,6 +29,8 @@ const NewTopicBtn = () => {
 
     http.post(topic, 'create-topic').then((res) => {
       if (res.success) {
+        setNewTopicModalOpen(false);
+        toInnerTopicPage(`/topics/${res.topic._id}`);
         console.log(res);
       } else {
         console.log(res);
@@ -42,6 +46,7 @@ const NewTopicBtn = () => {
           Create new Topic
         </ModalHeader>
         <ModalBody>
+          <p className='error-message'>{getErrorMsg}</p>
           <div className='new-title-form'>
             <input ref={inputTitleValue} type='text' placeholder='Enter title' className='mb-3' />
             <input

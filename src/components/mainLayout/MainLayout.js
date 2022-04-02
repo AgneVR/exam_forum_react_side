@@ -4,14 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser, logoutUser } from '../../features/user';
 import http from '../../plugins/http';
 import NewTopicBtn from '../newTopicBtn/NewTopicBtn';
+import { setNotifications } from '../../features/notifications';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faDoorOpen, faBell, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faDoorOpen, faBell, faHeart } from '@fortawesome/free-solid-svg-icons';
 import './MainLayout.scss';
 
 const MainLayout = () => {
   const toLoginPage = useNavigate();
+  const toTopicUrl = useNavigate();
   const dispatch = useDispatch();
   let currentUser = useSelector((state) => state.user.user);
+  let currentNotifications = useSelector((state) => state.notifications.notifications);
   const location = useLocation();
   const [showNotifications, setShowNotifications] = useState(false);
 
@@ -19,6 +22,7 @@ const MainLayout = () => {
     http.get(`get-user`).then((res) => {
       if (res.userInfo !== undefined) {
         dispatch(setUser(res.userInfo));
+        dispatch(setNotifications(res.notSeenNotifications));
       } else {
         if (
           location.pathname !== '/login' &&
@@ -44,27 +48,28 @@ const MainLayout = () => {
     }
   }
 
+  const onNotificationHandler = (el) => {
+    http.get(`notification-is-seen/${el._id}`).then((res) => {
+      if (res.success) {
+        dispatch(setNotifications(res.notSeenNotifications));
+        setShowNotifications(false);
+        toTopicUrl(el.destinationUrl);
+      }
+    });
+  };
+
   function notificationList() {
     return (
       <div className={`dropdown-notification ${showNotifications ? 'show' : ''}`}>
-        <Link to='/'>
-          <p>
-            There is new comment in topic:
-            <b> 10 Kids Unaware of Their Halloween Costume</b>
-          </p>
-        </Link>
-        <Link to='/'>
-          <p>
-            There is new comment in topic:
-            <b> 10 Kids Unaware of Their Halloween Costume</b>
-          </p>
-        </Link>
-        <Link to='/'>
-          <p>
-            There is new comment in topic:
-            <b> 10 Kids Unaware of Their Halloween Costume</b>
-          </p>
-        </Link>
+        {currentNotifications && currentNotifications.length > 0 ? (
+          currentNotifications.map((el, i) => (
+            <p onClick={() => onNotificationHandler(el)} key={i}>
+              {el.content}
+            </p>
+          ))
+        ) : (
+          <p className='d-flex justify-content-center mb-0'>You have none notifications</p>
+        )}
       </div>
     );
   }
@@ -91,12 +96,6 @@ const MainLayout = () => {
               </div>
 
               <div className='d-flex align-items-center'>
-                <div className='search-topic d-flex mr-20'>
-                  <input placeholder='Search Topic' />
-                  <button>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                  </button>
-                </div>
                 <NewTopicBtn />
 
                 <Link to='/favourite-topics' className='heart-icon mr-20'>
@@ -108,6 +107,9 @@ const MainLayout = () => {
                   className='notification mr-20'
                 >
                   <span onClick={() => setShowNotifications(!showNotifications)}>
+                    {currentNotifications && currentNotifications.length > 0 && (
+                      <span className='notification-marker'></span>
+                    )}
                     <FontAwesomeIcon icon={faBell} />
                   </span>
                   {notificationList()}
@@ -130,7 +132,7 @@ const MainLayout = () => {
               <Link to={`/login`}>Login</Link>
               <Link to={`/`}>Forum</Link>
             </div>
-            <Link to='/' className='heart-icon mr-20'>
+            <Link to='/favourite-topics' className='heart-icon mr-20'>
               <FontAwesomeIcon icon={faHeart} />
             </Link>
           </div>

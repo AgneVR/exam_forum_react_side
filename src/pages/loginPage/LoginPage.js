@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../features/user';
+import { setNotifications } from '../../features/notifications';
 import http from '../../plugins/http';
 import './LoginPage.scss';
 
@@ -25,6 +26,7 @@ const LoginPage = () => {
     http.post(user, 'login').then((res) => {
       if (res.success) {
         dispatch(setUser(res.oneUser));
+        dispatch(setNotifications(res.notSeenNotifications));
         setErrorMsg('');
         toHomePage('/');
       } else {

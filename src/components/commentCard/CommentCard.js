@@ -1,27 +1,39 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux';
 import './CommentCard.scss';
 
-const CommentCard = () => {
-  let currentUser = useSelector((state) => state.user.user);
+const CommentCard = ({ el }) => {
+  const normalDate = () => {
+    let currentDate = new Date();
+    let myDate = new Date(el.createdAt);
+    let diffTime = currentDate.getTime() - myDate.getTime();
+    let diffSec = diffTime / 1000;
+    let diffMinutes = diffTime / (1000 * 60);
+    let diffHours = diffTime / (1000 * 60 * 60);
+    let diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+    if (diffDays >= 1) {
+      return `${Math.floor(diffDays)} d`;
+    } else if (diffHours >= 1) {
+      return `${Math.floor(diffHours)} h`;
+    } else if (diffMinutes >= 1) {
+      return `${Math.floor(diffMinutes)} min`;
+    } else if (diffSec >= 0) {
+      return `${Math.floor(diffSec)} s`;
+    }
+  };
+
   return (
     <div className='topic-card-container inner-Card comment'>
       <div className='d-flex'>
         <div className='user-img mr-20'>
-          <img src={currentUser && currentUser.imageUrl} alt='' className='mb-3' />
+          <img src={el.user && el.user.imageUrl} alt='' className='mb-3' />
         </div>
         <div className='mr-20'>
-          <p>
-            Today, we're looking at three particularly interesting stories. Pinterest added a new
-            location-based feature on Wednesday that uses Place Pins as a way to map out vacations
-            and favorite areas. Southwest Airlines is providing Wi-Fi access from gate to gate for
-            $8 per day through an onboard hotspot. And in an effort to ramp up its user base, Google
-            Wallet is offering a debit card that can take out cash from.
-          </p>
+          <p>{el.comment}</p>
           <div className='time'>
             <FontAwesomeIcon icon={faClock} className='mr-4' />
-            <span>Posted on : 20 Nov @ 9:30am</span>
+            <span>Posted on : {normalDate()}</span>
           </div>
         </div>
       </div>

@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import http from '../../plugins/http';
 import './PostMessageInTopicCard.scss';
 
-const PostMessageInTopicCard = () => {
+const PostMessageInTopicCard = ({ singleTopic, onCreateComment }) => {
+  const [getErrorMsg, setErrorMsg] = useState('');
   let currentUser = useSelector((state) => state.user.user);
 
   const inputMessageValue = useRef();
@@ -15,17 +16,36 @@ const PostMessageInTopicCard = () => {
       comment: messageValue,
       createdAt: new Date(),
       currentUser: currentUser,
-      currentTopic: '',
+      currentTopic: singleTopic,
     };
 
-    http.post(comment, 'reate-comment').then((res) => {
+    http.post(comment, 'create-comment').then((res) => {
       if (res.success) {
-        console.log(res);
+        onCreateComment(res);
+        createNotification();
+        inputMessageValue.current.value = '';
+        setErrorMsg('');
       } else {
-        console.log(res);
+        setErrorMsg(res.message);
       }
     });
   };
+
+  const createNotification = () => {
+    if (singleTopic.user._id !== currentUser._id) {
+      let content = `${currentUser.username} added new comment created in topic ${singleTopic.title}`;
+      let destinationUrl = `/topics/${singleTopic._id}`;
+
+      const notification = {
+        content: content,
+        destinationUrl: destinationUrl,
+        currentUser: singleTopic.user,
+      };
+
+      http.post(notification, 'create-notification').then((res) => {});
+    }
+  };
+
   return (
     <div className='post-message-block'>
       <div className='d-flex'>
@@ -33,6 +53,7 @@ const PostMessageInTopicCard = () => {
           <img src={currentUser && currentUser.imageUrl} alt='' className='mb-3' />
         </div>
         <div className='message-area'>
+          <p className='error-message'>{getErrorMsg}</p>
           <textarea
             ref={inputMessageValue}
             placeholder='Type your message here'
