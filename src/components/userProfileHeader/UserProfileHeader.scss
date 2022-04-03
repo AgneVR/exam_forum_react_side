@@ -1,6 +1,8 @@
+@import '../../styles/colors';
+
 .user-header {
   position: relative;
-  background-color: #fff;
+  background-color: $white;
   box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
   .bg-user {
     position: relative;
@@ -21,7 +23,7 @@
       width: 200px;
       height: 200px;
       margin-bottom: -35px;
-      border: 3px solid #fff;
+      border: 3px solid $white;
       border-radius: 5px;
     }
     position: relative;
@@ -48,10 +50,22 @@
           display: inline-block;
 
           &.active {
-            border-color: #1abc9c;
+            border-color: $electric;
           }
         }
       }
     }
+  }
+}
+@media only screen and (max-width: 500px) {
+  .user-header .menu ul {
+    margin: 28px 0 0;
+    width: 100%;
+    margin-left: 10px;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .bg-user h3 {
+    display: none;
   }
 }

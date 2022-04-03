@@ -1,11 +1,12 @@
 @import '../../styles/mixins';
+@import '../../styles/colors';
 
 .nav-bar {
   position: absolute;
   top: 0;
   left: 0;
   display: inline-block;
-  background-color: white;
+  background-color: $white;
   width: 100%;
 }
 .nav-bar-first {
@@ -15,10 +16,13 @@
   a {
     margin-right: 20px;
     font-weight: 500;
+    &.active {
+      color: $electric;
+    }
   }
   .heart-icon {
     font-size: 20px;
-    color: #4ebae7;
+    color: $mainBlue;
   }
 }
 .nav-bar-second {
@@ -37,14 +41,14 @@
     padding: 10px 20px;
   }
   .nav-btn.close {
-    color: #a30505;
+    color: $btnRed;
     border: none;
     background: none;
     font-size: 24px;
   }
   .notification {
     font-size: 24px;
-    color: #b2b2b2;
+    color: $notificationGrey;
     cursor: pointer;
     position: relative;
     .notification-marker {
@@ -55,7 +59,7 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background-color: #a30505;
+      background-color: $btnRed;
     }
 
     .dropdown-notification {
@@ -64,10 +68,10 @@
       top: 34px;
       right: 0;
       z-index: 7;
-      background-color: #b2b2b2;
+      background-color: $notificationGrey;
       padding: 10px;
       font-size: 14px;
-      color: white;
+      color: $white;
       width: 300px;
       display: none;
 
@@ -76,7 +80,7 @@
       }
 
       p {
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid $white;
         padding-bottom: 10px;
         &:last-child {
           border: none;
@@ -87,7 +91,7 @@
   }
   .heart-icon {
     font-size: 24px;
-    color: #4ebae7;
+    color: $mainBlue;
   }
   .nav-user-img {
     img {
@@ -103,18 +107,18 @@
     input {
       border: none;
       box-shadow: none;
-      background-color: #f3f5f9;
-      color: #363838;
+      background-color: $lightWhite;
+      color: $inputDarkGrey;
       font-size: 14px;
       padding: 8px 19px;
       line-height: 1.42857143;
       border-radius: 4px 0 0 4px;
     }
     button {
-      border: solid 1px #697683;
+      border: solid 1px $darkerGrey;
       box-shadow: none;
-      background-color: #697683;
-      color: #ffffff;
+      background-color: $darkerGrey;
+      color: $white;
       font-size: 18px;
       font-weight: 400;
       text-align: center;
@@ -139,7 +143,6 @@
 .bg-upper-box {
   background-repeat: no-repeat;
   background-image: url('../../images/main.png');
-  /* background-size: cover; */
   background-position: center top;
   width: 100%;
   height: 120px;

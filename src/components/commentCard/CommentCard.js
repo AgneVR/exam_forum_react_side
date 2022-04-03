@@ -24,13 +24,17 @@ const CommentCard = ({ el }) => {
   };
 
   return (
-    <div className='topic-card-container inner-Card comment'>
-      <div className='d-flex'>
+    <div className='topic-card-container inner-Card comment w100'>
+      <div className='d-flex com-card'>
         <div className='user-img mr-20'>
           <img src={el.user && el.user.imageUrl} alt='' className='mb-3' />
         </div>
         <div className='mr-20'>
-          <p>{el.comment}</p>
+          <div
+            style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}
+            dangerouslySetInnerHTML={{ __html: el.comment }}
+          />
+
           <div className='time'>
             <FontAwesomeIcon icon={faClock} className='mr-4' />
             <span>Posted on : {normalDate()}</span>

@@ -1,53 +1,54 @@
 @import '../styles/fonts';
+@import '../styles/colors';
 
 @mixin buttonStyleElectric {
   border: none;
   box-shadow: none;
-  color: #ffffff;
+  color: $white;
   font-size: 18px;
   font-family: $fontFamily;
   border-radius: 5px;
   padding: 9px 10px;
-  background-color: #1abc9c;
+  background-color: $electric;
   &:hover {
-    background-color: #148c74;
+    background-color: $darkerElectric;
   }
 }
 @mixin buttonStyleElectric {
   border: none;
   box-shadow: none;
-  color: #ffffff;
+  color: $white;
   font-size: 18px;
   font-family: $fontFamily;
   border-radius: 5px;
   padding: 9px 10px;
-  background-color: #1abc9c;
+  background-color: $electric;
   &:hover {
-    background-color: #148c74;
+    background-color: $darkerElectric;
   }
 }
 @mixin buttonStyleGrey {
   border: none;
   box-shadow: none;
-  color: #ffffff;
+  color: $white;
   font-size: 18px;
   font-family: $fontFamily;
   border-radius: 5px;
   padding: 9px 10px;
-  background-color: #b8b8b8;
+  background-color: $btnGreyOne;
   &:hover {
-    background-color: #747474;
+    background-color: $btnGreyTwo;
   }
 }
 @mixin inputStyle {
-  border: 1px solid #eee;
+  border: 1px solid $inputBorder;
   box-sizing: border-box;
   border-radius: 5px;
-  color: #202020;
+  color: $darkGrey;
   padding: 11px 20px;
   width: 100%;
   &:focus {
-    border: 1px solid #1abc9c;
+    border: 1px solid $electric;
   }
   &:active,
   &:focus {
@@ -58,7 +59,7 @@
   display: flex;
   flex-direction: column;
   padding: 30px;
-  background: #fff;
+  background: $white;
   -webkit-box-shadow: 5px 7px 40px rgb(69 69 69 / 10%);
   box-shadow: 5px 7px 40px rgb(69 69 69 / 10%);
   border-radius: 10px;
@@ -71,7 +72,7 @@
   height: 100vh;
 }
 @mixin topicCard {
-  background: #fff;
+  background: $white;
   -webkit-box-shadow: 5px 7px 40px rgb(69 69 69 / 10%);
   box-shadow: 5px 7px 40px rgb(69 69 69 / 10%);
   border-radius: 10px;

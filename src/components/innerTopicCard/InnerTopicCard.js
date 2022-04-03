@@ -13,13 +13,13 @@ const InnerTopicCard = ({ singleTopic }) => {
 
   return (
     <div className='topic-card-container inner-Card'>
-      <div className='d-flex'>
+      <div className='d-flex mobile'>
         <div className='user-img mr-20'>
           <img src={singleTopic.user && singleTopic.user.imageUrl} alt='' className='mb-3' />
         </div>
         <div className='mr-20'>
           <h4>{singleTopic.title}</h4>
-          <p>{singleTopic.description}</p>
+          <p style={{ whiteSpace: 'pre-wrap' }}>{singleTopic.description}</p>
           <div className='time'>
             <FontAwesomeIcon icon={faClock} className='mr-4' />
             <span>Posted on : {`${postDate.getDate()} ${month} @ ${hours}`}</span>

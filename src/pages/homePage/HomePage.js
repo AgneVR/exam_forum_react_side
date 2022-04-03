@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
 import TopicCard from '../../components/topicCard/TopicCard';
-import MostReadableTopicsCard from '../../components/mostReadableTopicsCard/MostReadableTopicsCard';
-import MostPopularTopicsCard from '../../components/mostPopularTopicsCard/MostPopularTopicsCard';
-import RecentTopicsCard from '../../components/recentTopicsCard/RecentTopicsCard';
 import http from '../../plugins/http';
-import './HomePage.scss';
+import StatisticsBar from '../../components/statisticsBar/StatisticsBar';
 
 const HomePage = () => {
   const [topics, setTopics] = useState([]);
@@ -13,9 +10,6 @@ const HomePage = () => {
     http.get('topics').then((res) => {
       if (res.success) {
         setTopics(res.topics);
-        console.log(res.topics);
-      } else {
-        console.log(res);
       }
     });
   }, []);
@@ -31,15 +25,7 @@ const HomePage = () => {
           )}
         </div>
         <div className='col-lg-4'>
-          <div className='mb-3'>
-            <RecentTopicsCard />
-          </div>
-          <div className='mb-3'>
-            <MostPopularTopicsCard />
-          </div>
-          <div className='mb-3'>
-            <MostReadableTopicsCard />
-          </div>
+          <StatisticsBar />
         </div>
       </div>
     </div>

@@ -1,7 +1,9 @@
 import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
-import { useEffect, useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import http from '../../plugins/http';
 import './NewTopicBtn.scss';
 
@@ -31,9 +33,7 @@ const NewTopicBtn = () => {
       if (res.success) {
         setNewTopicModalOpen(false);
         toInnerTopicPage(`/topics/${res.topic._id}`);
-        console.log(res);
       } else {
-        console.log(res);
         setErrorMsg(res.message);
       }
     });
@@ -48,14 +48,26 @@ const NewTopicBtn = () => {
         <ModalBody>
           <p className='error-message'>{getErrorMsg}</p>
           <div className='new-title-form'>
-            <input ref={inputTitleValue} type='text' placeholder='Enter title' className='mb-3' />
+            <input
+              style={{ wordBreak: 'break-all' }}
+              ref={inputTitleValue}
+              type='text'
+              placeholder='Enter title'
+              className='mb-3'
+            />
             <input
               ref={inputShortDescriptionValue}
+              style={{ wordBreak: 'break-all' }}
               type='text'
               placeholder='Enter short description'
               className='mb-3'
             />
-            <textarea ref={inputDescriptionValue} type='text' placeholder='Enter description' />
+            <textarea
+              style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}
+              ref={inputDescriptionValue}
+              type='text'
+              placeholder='Enter description'
+            />
           </div>
         </ModalBody>
         <ModalFooter>
@@ -73,7 +85,10 @@ const NewTopicBtn = () => {
     <>
       {newTopicModal()}
       <button onClick={() => setNewTopicModalOpen(true)} className='btn-topic mr-20'>
-        Start New topic
+        <span className='plius-topic-create'>
+          <FontAwesomeIcon icon={faPlus} />
+        </span>
+        <span className='text-topic-create'>Start New topic</span>
       </button>
     </>
   );

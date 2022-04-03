@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
 import http from '../../plugins/http';
 import { setUser } from '../../features/user';
@@ -24,9 +24,6 @@ const UserProfilePhoto = () => {
         dispatch(setUser(res.userInfo));
         setChangeUserImageOpen(false);
         window.location.reload();
-        console.log(res);
-      } else {
-        console.log(res);
       }
     });
   };

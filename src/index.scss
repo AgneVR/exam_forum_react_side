@@ -31,13 +31,17 @@ body {
     height: auto;
   }
   .favouriteFopic {
-    color: #4ebae7;
+    color: $mainBlue;
     cursor: pointer;
   }
   .w100 {
     width: 100%;
   }
   .error-message {
-    color: rgb(109, 3, 3);
+    color: $dangerRed;
+  }
+  iframe {
+    width: 100%;
+    height: auto;
   }
 }

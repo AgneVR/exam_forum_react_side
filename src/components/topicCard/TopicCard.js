@@ -1,7 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faClock, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faClock, faHeart } from '@fortawesome/free-solid-svg-icons';
 import './TopicCard.scss';
 
 const TopicCard = ({ el, onFavChange, isInFavPage }) => {
@@ -51,7 +51,6 @@ const TopicCard = ({ el, onFavChange, isInFavPage }) => {
     if (favouriteTopics !== null) {
       let favouriteTopicsArr = JSON.parse(favouriteTopics);
       let topicIndex = favouriteTopicsArr.findIndex((item) => item._id === el._id);
-      console.log(topicIndex);
       if (topicIndex === -1) {
         favouriteTopicsArr.push(el);
         localStorage.setItem('favouriteTopics', JSON.stringify(favouriteTopicsArr));
@@ -95,12 +94,12 @@ const TopicCard = ({ el, onFavChange, isInFavPage }) => {
           />
         </div>
 
-        <div className='mr-20'>
+        <div className='mr-20 text-side'>
           <Link to={`/topics/${el._id}`}>{el.title}</Link>
           <p>{el.shortDescription}</p>
         </div>
       </div>
-      <div className='icons-part d-flex flex-column align-items-center'>
+      <div className='icons-part d-flex align-items-center'>
         <div className='comments'>
           <div className='comment-bg'>
             {el.commentsCount ? el.commentsCount : 0}

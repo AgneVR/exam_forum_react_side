@@ -1,4 +1,6 @@
 @import '../../styles/mixins';
+@import '../../styles/colors';
+
 .profile-img {
   cursor: pointer;
   opacity: 1;
@@ -7,7 +9,7 @@
   height: auto;
   transition: 0.5s ease;
   backface-visibility: hidden;
-  background-color: white;
+  background-color: $white;
 }
 .middle {
   transition: 0.5s ease;
@@ -22,7 +24,7 @@
     @include buttonStyleElectric();
     font-size: 14px;
     &:hover {
-      background-color: #1abc9c;
+      background-color: $electric;
     }
   }
 }

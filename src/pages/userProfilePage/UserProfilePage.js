@@ -1,8 +1,7 @@
+import { useEffect, useState } from 'react';
 import UserProfileHeader from '../../components/userProfileHeader/UserProfileHeader';
 import TopicCard from '../../components/topicCard/TopicCard';
 import http from '../../plugins/http';
-import { useEffect, useState } from 'react';
-import './UserProfilePage.scss';
 
 const UserProfilePage = () => {
   const [myTopics, setMyTopics] = useState([]);
@@ -11,9 +10,6 @@ const UserProfilePage = () => {
     http.get('topics/my-topics').then((res) => {
       if (res.success) {
         setMyTopics(res.myTopic);
-        console.log(res);
-      } else {
-        console.log(res);
       }
     });
   }, []);

@@ -22,3 +22,19 @@
 .modal-footer {
   border-top: none;
 }
+.plius-topic-create {
+  display: none;
+}
+@media only screen and (max-width: 460px) {
+  .plius-topic-create {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .text-topic-create {
+    display: none;
+  }
+  .nav-bar-second .btn-topic {
+    padding: 5px 12px !important;
+  }
+}

@@ -48,13 +48,14 @@ const PostMessageInTopicCard = ({ singleTopic, onCreateComment }) => {
 
   return (
     <div className='post-message-block'>
-      <div className='d-flex'>
+      <div className='d-flex mobile'>
         <div className='user-img mr-20'>
           <img src={currentUser && currentUser.imageUrl} alt='' className='mb-3' />
         </div>
         <div className='message-area'>
           <p className='error-message'>{getErrorMsg}</p>
           <textarea
+            style={{ whiteSpace: 'pre-wrap' }}
             ref={inputMessageValue}
             placeholder='Type your message here'
             rows='4'

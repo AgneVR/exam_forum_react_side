@@ -1,6 +1,5 @@
-import TopicCard from '../../components/topicCard/TopicCard';
 import { useState, useEffect } from 'react';
-import './FavouritesPage.scss';
+import TopicCard from '../../components/topicCard/TopicCard';
 
 const FavouritesPage = () => {
   const [favouriteTopics, setFavouriteTopics] = useState([]);
@@ -8,7 +7,7 @@ const FavouritesPage = () => {
 
   useEffect(() => {
     let favTopics = localStorage.getItem('favouriteTopics');
-    console.log('TTT');
+
     if (favTopics !== null) {
       setFavouriteTopics([...JSON.parse(favTopics)]);
     }
@@ -19,7 +18,7 @@ const FavouritesPage = () => {
       <div className='row'>
         {favouriteTopics &&
           favouriteTopics.map((el, i) => (
-            <div className='col-lg-6' key={i}>
+            <div className='col-lg-6 d-flex' key={i}>
               <TopicCard isInFavPage={true} onFavChange={setFavChange} el={el} />
             </div>
           ))}

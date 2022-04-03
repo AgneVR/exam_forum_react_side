@@ -1,4 +1,4 @@
-import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
+import { Outlet, Link, useNavigate, useLocation, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser, logoutUser } from '../../features/user';
@@ -128,9 +128,15 @@ const MainLayout = () => {
         <div className='nav-bar-first'>
           <div className='container d-flex justify-content-between'>
             <div>
-              <Link to={`/register`}>Register</Link>
-              <Link to={`/login`}>Login</Link>
-              <Link to={`/`}>Forum</Link>
+              <NavLink className={(navData) => (navData.isActive ? 'active' : '')} to={`/register`}>
+                Register
+              </NavLink>
+              <NavLink className={(navData) => (navData.isActive ? 'active' : '')} to={`/login`}>
+                Login
+              </NavLink>
+              <NavLink className={(navData) => (navData.isActive ? 'active' : '')} to={`/`}>
+                Forum
+              </NavLink>
             </div>
             <Link to='/favourite-topics' className='heart-icon mr-20'>
               <FontAwesomeIcon icon={faHeart} />

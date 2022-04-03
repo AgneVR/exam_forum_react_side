@@ -3,3 +3,11 @@
     margin-top: 0;
   }
 }
+@media only screen and (max-width: 500px) {
+  .com-card {
+    flex-direction: column;
+    .user-img {
+      margin-bottom: 0;
+    }
+  }
+}

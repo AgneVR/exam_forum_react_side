@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import UserProfileHeader from '../../components/userProfileHeader/UserProfileHeader';
 import CommentCard from '../../components/commentCard/CommentCard';
-import { useEffect, useState } from 'react';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import http from '../../plugins/http';
 import PaginationGlobal from '../../components/pagination/PaginationGlobal';
 
@@ -18,9 +18,6 @@ const UserProfileCommentsPage = () => {
       if (res.success) {
         setMyComments(res.myComment);
         setCommentsTotal(res.myCommentsAll);
-        console.log(res);
-      } else {
-        console.log(res);
       }
     });
   }, [currentPage]);
@@ -53,11 +50,15 @@ const UserProfileCommentsPage = () => {
         ) : (
           <p>No comments found</p>
         )}
-        <PaginationGlobal
-          activePage={currentPage}
-          totalItemsCount={commentsTotal}
-          handlePageChange={handlePageChange}
-        />
+        {commentsTotal && commentsTotal > 10 ? (
+          <PaginationGlobal
+            activePage={currentPage}
+            totalItemsCount={commentsTotal}
+            handlePageChange={handlePageChange}
+          />
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );

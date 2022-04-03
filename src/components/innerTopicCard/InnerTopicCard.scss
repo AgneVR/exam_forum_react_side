@@ -3,3 +3,8 @@
     text-align: left;
   }
 }
+@media only screen and (max-width: 767px) {
+  .topic-card-container.inner-Card .mobile {
+    flex-direction: column;
+  }
+}
