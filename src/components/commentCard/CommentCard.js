@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faUser } from '@fortawesome/free-solid-svg-icons';
 import './CommentCard.scss';
 
 const CommentCard = ({ el }) => {
@@ -34,10 +34,13 @@ const CommentCard = ({ el }) => {
             style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}
             dangerouslySetInnerHTML={{ __html: el.comment }}
           />
-
+          <div className='time mt-3'>
+            <FontAwesomeIcon icon={faUser} className='mr-4' />
+            Posted by: <b>{el.user && el.user.username}</b>
+          </div>
           <div className='time'>
             <FontAwesomeIcon icon={faClock} className='mr-4' />
-            <span>Posted on : {normalDate()}</span>
+            <span>{normalDate()} ago</span>
           </div>
         </div>
       </div>

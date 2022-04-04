@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faUser } from '@fortawesome/free-solid-svg-icons';
 import './InnerTopicCard.scss';
 
 const InnerTopicCard = ({ singleTopic }) => {
@@ -20,6 +20,10 @@ const InnerTopicCard = ({ singleTopic }) => {
         <div className='mr-20'>
           <h4>{singleTopic.title}</h4>
           <p style={{ whiteSpace: 'pre-wrap' }}>{singleTopic.description}</p>
+          <div className='time'>
+            <FontAwesomeIcon icon={faUser} className='mr-4' />
+            Posted by: <b>{singleTopic.user && singleTopic.user.username}</b>
+          </div>
           <div className='time'>
             <FontAwesomeIcon icon={faClock} className='mr-4' />
             <span>Posted on : {`${postDate.getDate()} ${month} @ ${hours}`}</span>
