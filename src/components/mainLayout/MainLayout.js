@@ -27,7 +27,9 @@ const MainLayout = () => {
         if (
           location.pathname !== '/login' &&
           location.pathname !== '/register' &&
-          location.pathname !== '/'
+          location.pathname !== '/favourite-topics' &&
+          location.pathname !== '/' &&
+          !location.pathname.includes('/topic')
         ) {
           toLoginPage('/login');
         }

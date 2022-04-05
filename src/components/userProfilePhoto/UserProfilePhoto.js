@@ -7,6 +7,7 @@ import './UserProfilePhoto.scss';
 
 const UserProfilePhoto = () => {
   const [changeUserImageOpen, setChangeUserImageOpen] = useState(false);
+  const [getErrorMsg, setErrorMsg] = useState('');
   let currentUser = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
@@ -24,21 +25,26 @@ const UserProfilePhoto = () => {
         dispatch(setUser(res.userInfo));
         setChangeUserImageOpen(false);
         window.location.reload();
+        setErrorMsg('');
+      } else {
+        setErrorMsg(res.message);
       }
     });
   };
 
+  const onCancelHandler = () => {
+    setChangeUserImageOpen(false);
+    setErrorMsg('');
+  };
+
   function changeUserPhoto() {
     return (
-      <Modal
-        centered={true}
-        isOpen={changeUserImageOpen}
-        toggle={() => setChangeUserImageOpen(false)}
-      >
+      <Modal centered={true} isOpen={changeUserImageOpen} toggle={onCancelHandler}>
         <ModalHeader charcode='Y' toggle={() => setChangeUserImageOpen(false)}>
           Change profile picture
         </ModalHeader>
         <ModalBody>
+          <p className='error-message'>{getErrorMsg}</p>
           <div className='new-title-form'>
             <input
               ref={inputImageUrlValue}
@@ -52,7 +58,7 @@ const UserProfilePhoto = () => {
           <button onClick={onClickHandler} className='create-btn-form-topic'>
             Save
           </button>
-          <button className='cancel-btn-form-topic' onClick={() => setChangeUserImageOpen(false)}>
+          <button className='cancel-btn-form-topic' onClick={onCancelHandler}>
             Cancel
           </button>
         </ModalFooter>
