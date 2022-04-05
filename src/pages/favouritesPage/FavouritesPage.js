@@ -16,12 +16,15 @@ const FavouritesPage = () => {
   return (
     <div className='container mt-50'>
       <div className='row'>
-        {favouriteTopics &&
+        {favouriteTopics && favouriteTopics.length > 0 ? (
           favouriteTopics.map((el, i) => (
             <div className='col-lg-6 d-flex' key={i}>
               <TopicCard isInFavPage={true} onFavChange={setFavChange} el={el} />
             </div>
-          ))}
+          ))
+        ) : (
+          <p>There is none fovourite topics</p>
+        )}
       </div>
     </div>
   );
